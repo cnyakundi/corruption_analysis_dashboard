@@ -20,7 +20,8 @@ columns = ['It was the only way', 'To hasten the process',
            'To avoid paying full cost of service', 'To access service',
            'Was expected']
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 fig = px.scatter(data, x=data['2015_avg_bribe'], y=data['total_gcp'],
                  size=data['total_population19'], color="2015_avg_time_bribe_paid", hover_name="county_name",
@@ -94,4 +95,4 @@ app.layout = html.Div([
 
 
 if __name__ == '__main__':
-    app.run_server(port=8050)
+    app.run_server()
