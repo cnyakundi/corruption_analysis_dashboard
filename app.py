@@ -20,7 +20,7 @@ columns = ['It was the only way', 'To hasten the process',
            'To avoid paying full cost of service', 'To access service',
            'Was expected']
 
-app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
 fig = px.scatter(data, x=data['2015_avg_bribe'], y=data['total_gcp'],
@@ -33,7 +33,7 @@ regime_scatter = px.scatter(regime_change, x=regime_change['difference'], y=regi
                             log_x=True, size_max=60)
 # Reasons for bribing dataset
 bribing = px.bar(reasons_for_bribing_final, x=reasons_for_bribing_final['County'],
-                 y=reasons_for_bribing_final['It was the only way'],  barmode="group")
+                 y=reasons_for_bribing_final['It was the only way'], barmode="group")
 fig1 = px.bar(data, x=data['county_name'], y=data['2015_avg_bribe'], color=data['total_population19'], barmode="group")
 fig2 = px.bar(data, x=data['county_name'], y=data['2016_avg_bribe'], barmode="group")
 fig3 = px.bar(data, x=data['county_name'], y=data['2017_avg_bribe'], barmode="group")
@@ -61,6 +61,13 @@ app.layout = html.Div([
         figure=fig1,
     ),
 
+    dcc.Graph(
+        figure=fig2,
+    ),
+
+    dcc.Graph(
+        figure=fig3,
+    ),
     dcc.Graph(
         id='life-exp-vs-gdp',
         figure=fig
